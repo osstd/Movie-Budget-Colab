@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="static/icon.png" type="image/x-icon" />
+    <title>Movies - The Numbers</title>
+
+    <link rel="stylesheet" href="static/css/require.css" />
+
+    <!-- Include Plotly JS library -->
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="main-heading">
+        <h1>Movie Budget and Financial Performance Records</h1>
+      </div>
+      <div class="text-container">
+        <h2>Introduction</h2>
+        <p>
+          Do higher film budgets lead to more box office revenue? Let's find out
+          if there's a relationship using the movie budgets and financial
+          performance data that have been scraped from the-numbers.com on
+          <u>May 1st, 2018</u>.
+        </p>
+        <div class="img-wrapper"><img src=https://i.imgur.com/kq7hrEh.png></div>
+      </div>
+
+      <div class="text-container">
+        <h2>Data Manipulation</h2>
+        <p>
+          To begin, we will read in the dataset from a .csv file into a Pandas
+          dataframe. We will then inspect the first and last few rows of the
+          data to get a sense of its structure and content. Next, we will
+          examine the dimensions of the dataframe, including the number of rows
+          and columns, and count the number of entries in each column.
+        </p>
+
+        <ul>
+          <li>Read in the dataset from a .csv file</li>
+          <li>Inspect the first and last few rows of the data</li>
+          <li>Examine the dimensions of the dataframe</li>
+          <li>Count the number of entries in each column</li>
+          <li>Remove any NaN values present</li>
+          <li>Check and eliminate any duplicate rows</li>
+          <li>
+            Convert the `USD_Production_Budget`, `USD_Worldwide_Gross`, and
+            `USD_Domestic_Gross` columns to a numeric format by removing `$`
+            signs and `,`.
+          </li>
+          <li>Change the `Release_Date` column to a Pandas Datetime type.</li>
+          <li>
+            Use <code>.describe()</code> to get descriptive statistics of the
+            dataset
+          </li>
+        </ul>
+      </div>
+      <div class="text-container">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr style="text-align: right">
+                <th></th>
+                <th>Rank</th>
+                <th>USD_Production_Budget</th>
+                <th>USD_Worldwide_Gross</th>
+                <th>USD_Domestic_Gross</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>count</th>
+                <td>5,391.00</td>
+                <td>5,391.00</td>
+                <td>5,391.00</td>
+                <td>5,391.00</td>
+              </tr>
+              <tr>
+                <th>mean</th>
+                <td>2,696.00</td>
+                <td>31,113,737.58</td>
+                <td>88,855,421.96</td>
+                <td>41,235,519.44</td>
+              </tr>
+              <tr>
+                <th>min</th>
+                <td>1.00</td>
+                <td>1,100.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+              </tr>
+              <tr>
+                <th>25%</th>
+                <td>1,348.50</td>
+                <td>5,000,000.00</td>
+                <td>3,865,206.00</td>
+                <td>1,330,901.50</td>
+              </tr>
+              <tr>
+                <th>50%</th>
+                <td>2,696.00</td>
+                <td>17,000,000.00</td>
+                <td>27,450,453.00</td>
+                <td>17,192,205.00</td>
+              </tr>
+              <tr>
+                <th>75%</th>
+                <td>4,043.50</td>
+                <td>40,000,000.00</td>
+                <td>96,454,455.00</td>
+                <td>52,343,687.00</td>
+              </tr>
+              <tr>
+                <th>max</th>
+                <td>5,391.00</td>
+                <td>425,000,000.00</td>
+                <td>2,783,918,982.00</td>
+                <td>936,662,225.00</td>
+              </tr>
+              <tr>
+                <th>std</th>
+                <td>1,556.39</td>
+                <td>40,523,796.88</td>
+                <td>168,457,757.00</td>
+                <td>66,029,346.27</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Display the Plotly chart -->
+
+      <div class="text-container">
+        <h2>Seaborn for Data Viz: Bubble Charts</h2>
+        <p>
+          Plot the production budget against the worldwide gross of all movies.
+          You can:
+        </p>
+        <ul>
+          <li>Pan</li>
+          <li>Zoom</li>
+          <li>Reset the axes</li>
+          <li>Press on a data point to get the movie name</li>
+          <li>
+            Download a copy of the plot as a png file by hovering over to the
+            menu on the top right
+          </li>
+        </ul>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-grid">
+          <div class="chart" id="chart1"></div>
+          <span class="label">Figure 1</span>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <h2>Plotting Movie Releases over Time</h2>
+        <p>
+          This scatter plot visualizes the relationship between movie release
+          year and production budget, with each data point representing a film.
+          The color and size of each point are mapped to the movie's gross
+          revenue, with larger and lighter in color points indicating higher
+          grossing films, providing a visual representation of the correlation
+          between budget and success.
+        </p>
+        <p>
+          Using the options on the top right choose the option to hover over one
+          data point. Hover over a point to see the movie's gross revenue!
+        </p>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-grid">
+          <div class="chart" id="chart2"></div>
+          <span class="label">Figure 2</span>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <h2>Seaborn Regression Plots Old Films</h2>
+        <p>
+          Create a DataFrame for old films that includes all the films released
+          up to 1969, and create another DataFrame called new films that
+          includes all the films released from 1970 onwards. These two
+          DataFrames will help in analyzing the films before and after 1970
+          separately.
+        </p>
+
+        <p>
+          This following plot shows the relationship between worldwide gross and
+          production budget for films released up to 1969 (old films). The plot
+          reveals a positive correlation between the two variables, indicating
+          that films with higher production budgets tend to have higher
+          worldwide grosses. Notably, the most expensive film produced during
+          this period was Cleopatra, with a budget of 42 million USD.
+        </p>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-grid">
+          <div class="chart" id="chart3"></div>
+          <span class="label">Figure 3</span>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <h2>New Films</h2>
+        <p>
+          This plot shows the relationship between worldwide gross and
+          production budget for films released from 1970 onwards (new films).
+          The data points for new films demonstrate a stronger linear
+          correlation compared to old films, indicating a more predictable
+          relationship between budget and success. Notably, Avatar (released in
+          2009) holds the record for the highest worldwide gross, approximately
+          2.8 billion USD, as of May 2018. According to the regression, a film
+          with a production cost of 100 million USD would be expected to gross
+          around 300 million USD, compared to approximately 190 million USD for
+          old films.
+        </p>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-grid">
+          <div class="chart" id="chart4"></div>
+          <span class="label">Figure 4</span>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <h2>Run Regression with scikit-learn</h2>
+        <p>
+          Run a linear regression for old and new films. After Calculating the
+          intercept, slope and r-squared.Remember that our Linear Model has the
+          following form:
+        </p>
+        <span> 𝑅𝐸𝑉𝐸̂𝑁𝑈𝐸 = 𝜃<sub>0</sub> + 𝜃<sub>1</sub> 𝐵𝑈𝐷𝐺𝐸𝑇 </span>
+        <p>
+          To estimate the global revenuw for and old or a new film based on
+          budget. Input movie budget (in millions), for instance for 350
+          millions enter 350.
+        </p>
+      </div>
+
+      <div class="chart-container">
+        <div id="input-div">
+          <label for="budget"> Input Movie Budget (in millions): </label>
+          <input type="number" id="budget" value="350" />
+          <button class="old" id="pre1970">&lt; 1970</button>
+          <button class="new" id="after1970">&gt; 1970</button>
+        </div>
+
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <script src="static/js/require.js"></script>
+  </body>
+</html>
