@@ -66,6 +66,12 @@
       font-size: 1.15rem;
     }
   }
+  code {
+    font-size: 1.15rem;
+    background-color: rgb(211, 215, 249);
+    padding: 0.5px;
+    border-radius: 4px;
+  }
   a,
   u {
     font-size: 1.35rem;
@@ -108,18 +114,16 @@
   text-align: center;
 }
 
-/* Center the parent div */
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px auto;
   width: 90%;
-  overflow-x: auto; /* Ensure overflow for small screens */
+  overflow-x: auto;
 }
 
 .text-container {
-  /* Make the table responsive */
   .table-container table {
     width: 100%;
     border-collapse: collapse;
@@ -128,7 +132,7 @@
     color: red;
     min-width: 400px;
     border: 1px solid #dddddd;
-    table-layout: auto; /* Allow table to adjust column widths */
+    table-layout: auto;
   }
 
   .table-container th,

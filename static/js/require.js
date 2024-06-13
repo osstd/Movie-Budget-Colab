@@ -8,8 +8,6 @@ async function scatterBubble(data, num) {
   const pdf = Plotly.d3.csv.parse(data);
   const names = pdf.map((row) => row.Movie_Title);
 
-  console.log(names);
-
   const scatter = {
     trace: {
       x: pdf.map((row) => row.USD_Production_Budget),
@@ -60,8 +58,6 @@ async function scatterBubbleHue(data, num) {
   const maxReleaseDate = Math.max(...releaseDates);
   const minReleaseDate = Math.min(...releaseDates);
 
-  // Map data for the trace
-
   const yData = pdf.map((row) => row.USD_Production_Budget);
 
   const colorData = pdf.map((row) => row.USD_Worldwide_Gross);
@@ -77,7 +73,7 @@ async function scatterBubbleHue(data, num) {
       y: yData,
       mode: "markers",
       type: "scatter",
-      text:sizeData,
+      text: sizeData,
       marker: {
         color: colorData,
         size: sizeData,
@@ -108,8 +104,6 @@ async function scatterBubbleHue(data, num) {
         linecolor: "black",
         mirror: true,
       },
-      // plot_bgcolor: "#222",
-      // paper_bgcolor: "#222",
       font: {
         family: "Verdana",
       },
@@ -154,8 +148,6 @@ function linearRegression(x, y) {
 
 async function scatterRegression(data, pc, rc, op, bg, num) {
   const pdf = Plotly.d3.csv.parse(data);
-
-  // Map data for the trace
 
   const xData = pdf.map((row) => parseInt(row.USD_Production_Budget));
   const yData = pdf.map((row) => parseInt(row.USD_Worldwide_Gross));
@@ -260,7 +252,6 @@ async function runRegression(type) {
 }
 
 async function main() {
-  const startTime = performance.now();
   try {
     const cleanData = await fetchCSVData("static/assets/csv/df_clean.csv");
     const cleanDataOld = await fetchCSVData(
@@ -293,9 +284,6 @@ async function main() {
     ]);
   } catch (error) {
     console.error("Error loading or plotting data:", error);
-  } finally {
-    const endTime = performance.now();
-    console.log(`Execution time: ${endTime - startTime}ms`);
   }
 }
 

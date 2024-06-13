@@ -22,8 +22,8 @@
         <p>
           Do higher film budgets lead to more box office revenue? Let's find out
           if there's a relationship using the movie budgets and financial
-          performance data that have been scraped from the-numbers.com on
-          <u>May 1st, 2018</u>.
+          performance data that have been scraped from the-numbers.com on May
+          1st, 2018.
         </p>
         <div class="img-wrapper"><img src=https://i.imgur.com/kq7hrEh.png></div>
       </div>
@@ -50,7 +50,10 @@
             `USD_Domestic_Gross` columns to a numeric format by removing `$`
             signs and `,`.
           </li>
-          <li>Change the `Release_Date` column to a Pandas Datetime type.</li>
+          <li>
+            Change the `Release_Date` column to a Pandas Datetime object using
+            <code>.to_datetime()</code>
+          </li>
           <li>
             Use <code>.describe()</code> to get descriptive statistics of the
             dataset
@@ -131,10 +134,8 @@
         </div>
       </div>
 
-      <!-- Display the Plotly chart -->
-
       <div class="text-container">
-        <h2>Seaborn for Data Viz: Bubble Charts</h2>
+        <h2>Seaborn for Data Visualization: Bubble Charts</h2>
         <p>
           Plot the production budget against the worldwide gross of all movies.
           You can:
@@ -143,10 +144,11 @@
           <li>Pan</li>
           <li>Zoom</li>
           <li>Reset the axes</li>
-          <li>Press on a data point to get the movie name</li>
+          <li>Select show closest data on hover from the menu on the top right</li>
+          <li>Hover over a data point to get the movie name</li>
           <li>
             Download a copy of the plot as a png file by hovering over to the
-            menu on the top right
+            control menu
           </li>
         </ul>
       </div>
@@ -170,7 +172,7 @@
         </p>
         <p>
           Using the options on the top right choose the option to hover over one
-          data point. Hover over a point to see the movie's gross revenue!
+          data point. Hover over a point to see the movie's gross revenue.
         </p>
       </div>
 
@@ -182,7 +184,7 @@
       </div>
 
       <div class="text-container">
-        <h2>Seaborn Regression Plots Old Films</h2>
+        <h2>Seaborn Regression Plots: Old Films</h2>
         <p>
           Create a DataFrame for old films that includes all the films released
           up to 1969, and create another DataFrame called new films that
